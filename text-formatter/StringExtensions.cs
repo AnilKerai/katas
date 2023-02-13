@@ -8,7 +8,6 @@ public static class StringExtensions
                 text
                     .Split(',', '.')
                     .Where(s => !string.IsNullOrEmpty(s))
-                    .ToList()
             ;
         return lines;
     }
