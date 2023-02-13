@@ -45,6 +45,7 @@ public static class StringExtensions
         return text
                 .Split('$')
                 .Select(s => s.Replace(",", string.Empty))
+                .Select(s => s.Replace(".", string.Empty))
                 .Max(s => s.Length)
             ;
     }
