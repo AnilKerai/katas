@@ -11,7 +11,7 @@ public class TextFormatterTests
         returnValue.Should().BeOfType<string>();
     }
     
-    [Theory, AutoNSubstituteData]
+    [Fact]
     public void Format_ShouldReturnEmptyString_WhenGivenNullInput()
     {
         var returnValue = TextFormatter.Format(null);

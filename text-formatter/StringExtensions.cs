@@ -12,7 +12,7 @@ public static class StringExtensions
         return lines;
     }
 
-    public static string GetPaddedLine(this string line, int largestWordLength)
+    public static string GetPaddedLine(this string line, int maxColumnSize)
     {
         var splitWords =
                 line
@@ -23,7 +23,7 @@ public static class StringExtensions
         
         var paddedWords = 
                 splitWords
-                    .Select(s => s.GetPaddedWord(largestWordLength))
+                    .Select(s => s.GetPaddedWord(maxColumnSize))
                     .ToList()
             ;
         
@@ -32,13 +32,6 @@ public static class StringExtensions
         return string.Concat(paddedWords);
     }
 
-    private static string GetPaddedWord(this string word, int largestWordLength)
-    {
-        var numberOfPaddingChars = largestWordLength - word.Length;
-        var paddingWord = string.Concat(Enumerable.Repeat(' ', numberOfPaddingChars));
-        return word + paddingWord;
-    }
-    
     public static int GetLengthOfLargestWordInString(this string text)
     {
         return text
@@ -47,5 +40,12 @@ public static class StringExtensions
                 .Select(s => s.Replace(".", string.Empty))
                 .Max(s => s.Length)
             ;
+    }
+    
+    private static string GetPaddedWord(this string word, int largestWordLength)
+    {
+        var numberOfPaddingChars = largestWordLength - word.Length;
+        var paddingWord = string.Concat(Enumerable.Repeat(' ', numberOfPaddingChars));
+        return word + paddingWord;
     }
 }
