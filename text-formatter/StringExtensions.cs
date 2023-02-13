@@ -32,7 +32,7 @@ public static class StringExtensions
         return string.Concat(paddedWords);
     }
 
-    public static string GetPaddedWord(this string word, int largestWordLength)
+    private static string GetPaddedWord(this string word, int largestWordLength)
     {
         var numberOfPaddingChars = largestWordLength - word.Length;
         var paddingWord = string.Concat(Enumerable.Repeat(' ', numberOfPaddingChars));
