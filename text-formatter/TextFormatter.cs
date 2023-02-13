@@ -1,20 +1,15 @@
 namespace text_formatter;
 
-public class TextFormatter
+public static class TextFormatter
 {
-    public string Format(string text)
+    public static string Format(string text)
     {
         if (string.IsNullOrEmpty(text))
             return string.Empty;
 
         var largestWordLength = GetLengthOfLargestWordInString(text);
 
-        var lines = 
-            text
-                .Split(',')
-                .Where(s => !string.IsNullOrEmpty(s))
-                .ToList()
-            ;
+        var lines = GetLines(text);
 
         var updatedLines = 
             lines
@@ -22,6 +17,17 @@ public class TextFormatter
                 .ToList();
 
         return string.Concat(updatedLines);
+    }
+
+    private static List<string> GetLines(string text)
+    {
+        var lines =
+                text
+                    .Split(',', '.')
+                    .Where(s => !string.IsNullOrEmpty(s))
+                    .ToList()
+            ;
+        return lines;
     }
 
     private static string GetPaddedLine(string line, int largestWordLength)

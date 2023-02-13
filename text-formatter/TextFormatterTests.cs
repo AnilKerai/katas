@@ -4,20 +4,17 @@ public class TextFormatterTests
 {
     [Theory, AutoNSubstituteData]
     public void Format_ShouldReturnString_WhenGivenValidInput(
-        string randomString,
-        TextFormatter sut
+        string randomString
     )
     {
-        var returnValue = sut.Format(randomString);
+        var returnValue = TextFormatter.Format(randomString);
         returnValue.Should().BeOfType<string>();
     }
     
     [Theory, AutoNSubstituteData]
-    public void Format_ShouldReturnEmptyString_WhenGivenNullInput(
-        TextFormatter sut
-        )
+    public void Format_ShouldReturnEmptyString_WhenGivenNullInput()
     {
-        var returnValue = sut.Format(null);
+        var returnValue = TextFormatter.Format(null);
         returnValue.Should().BeNullOrEmpty();
     }
 
@@ -25,13 +22,13 @@ public class TextFormatterTests
     [InlineAutoNSubstituteData("$Given", "Given  \n")]
     [InlineAutoNSubstituteData("Given$a$text$file$of$many$lines", "Given  a      text   file   of     many   lines  \n")]
     [InlineAutoNSubstituteData("Given$a$text,$file$of$many$lines", "Given  a      text   \nfile   of     many   lines  \n")]
+    [InlineAutoNSubstituteData("Given$a$text.$file$of$many$lines", "Given  a      text   \nfile   of     many   lines  \n")]
     public void Format_ShouldReturnWordsInColumnsWithPadding_WhenGivenMultipleDollarSignSeparatedWords(
         string inputText,
-        string expectedText,
-        TextFormatter sut
+        string expectedText
     )
     {
-        var returnValue = sut.Format(inputText);
+        var returnValue = TextFormatter.Format(inputText);
         returnValue.Should().Be(expectedText);
     }
 }
