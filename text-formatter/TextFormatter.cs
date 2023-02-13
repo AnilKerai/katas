@@ -19,7 +19,7 @@ public static class TextFormatter
         return string.Concat(updatedLines);
     }
 
-    private static List<string> GetLines(string text)
+    private static IEnumerable<string> GetLines(string text)
     {
         var lines =
                 text
