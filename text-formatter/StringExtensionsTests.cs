@@ -6,7 +6,7 @@ public class StringExtensionsTests
     public void GetLines_ShouldReturnZeroLines_WhenStringIsEmpty()
     {
         var result = string.Empty.GetLines();
-        result.Count().Should().Be(0);
+        result.Count().ShouldBe(0);
     }
     
     [Theory, AutoNSubstituteData]
@@ -15,7 +15,7 @@ public class StringExtensionsTests
     )
     {
         var result = randomString.GetLines();
-        result.Count().Should().Be(1);
+        result.Count().ShouldBe(1);
     }
     
     [Theory]
@@ -27,14 +27,14 @@ public class StringExtensionsTests
     )
     {
         var result = sut.GetLines();
-        result.Count().Should().Be(expectedLineCount);
+        result.Count().ShouldBe(expectedLineCount);
     }
     
     [Fact]
     public void GetPaddedLine_ShouldReturnNewLine_WhenGivenEmptyString()
     {
         var result = string.Empty.GetPaddedLine(3);
-        result.Should().Be("\n");
+        result.ShouldBe("\n");
     }
     
     [Theory]
@@ -47,14 +47,14 @@ public class StringExtensionsTests
     )
     {
         var result = sut.GetPaddedLine(maxColumnSize);
-        result.Should().Be(expectedPaddedLine);
+        result.ShouldBe(expectedPaddedLine);
     }
     
     [Fact]
     public void GetLengthOfLargestWordInString_ShouldReturn0_WhenGivenEmptyString()
     {
         var result = string.Empty.GetLengthOfLargestWordInString();
-        result.Should().Be(0);
+        result.ShouldBe(0);
     }
     
     [Theory]
@@ -66,6 +66,6 @@ public class StringExtensionsTests
     )
     {
         var result = sut.GetLengthOfLargestWordInString();
-        result.Should().Be(expectedWordLength);
+        result.ShouldBe(expectedWordLength);
     }
 }

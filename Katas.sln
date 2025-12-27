@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "abc-game", "abc-game\abc-game.csproj", "{D40DD91A-4554-454C-A668-313AFCE1D20C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bowling-score-calc", "bowling-score-calc\bowling-score-calc.csproj", "{5089F3C2-AA73-40B2-8547-EC825CD19F00}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "print-diamond", "print-diamond\print-diamond.csproj", "{B2C318AF-D0FD-4720-8605-4D85324484A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "text-formatter", "text-formatter\text-formatter.csproj", "{D1BF9E0D-A1E1-4135-812B-FF08BC2A4957}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D40DD91A-4554-454C-A668-313AFCE1D20C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D40DD91A-4554-454C-A668-313AFCE1D20C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D40DD91A-4554-454C-A668-313AFCE1D20C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D40DD91A-4554-454C-A668-313AFCE1D20C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5089F3C2-AA73-40B2-8547-EC825CD19F00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5089F3C2-AA73-40B2-8547-EC825CD19F00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5089F3C2-AA73-40B2-8547-EC825CD19F00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5089F3C2-AA73-40B2-8547-EC825CD19F00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2C318AF-D0FD-4720-8605-4D85324484A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2C318AF-D0FD-4720-8605-4D85324484A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2C318AF-D0FD-4720-8605-4D85324484A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2C318AF-D0FD-4720-8605-4D85324484A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1BF9E0D-A1E1-4135-812B-FF08BC2A4957}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1BF9E0D-A1E1-4135-812B-FF08BC2A4957}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1BF9E0D-A1E1-4135-812B-FF08BC2A4957}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1BF9E0D-A1E1-4135-812B-FF08BC2A4957}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

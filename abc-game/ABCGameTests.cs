@@ -1,6 +1,3 @@
-using FluentAssertions;
-using Xunit;
-
 namespace abc_game;
 
 public class ABCGameTests
@@ -11,7 +8,7 @@ public class ABCGameTests
         )
     {
         var result = sut.CanMakeWord(string.Empty);
-        result.Should().BeFalse();
+        result.ShouldBeFalse();
     }
 
     [Theory]
@@ -23,7 +20,7 @@ public class ABCGameTests
         )
     {
         var result = sut.CanMakeWord(word);
-        result.Should().BeTrue();
+        result.ShouldBeTrue();
     }
 
     [Theory]
@@ -35,7 +32,7 @@ public class ABCGameTests
         )
     {
         var result = sut.CanMakeWord(word);
-        result.Should().BeFalse();
+        result.ShouldBeFalse();
     }
 
     [Theory]
@@ -49,6 +46,6 @@ public class ABCGameTests
         )
     {
         var result = sut.CanMakeWord(word);
-        result.Should().BeTrue();
+        result.ShouldBeTrue();
     }
 }

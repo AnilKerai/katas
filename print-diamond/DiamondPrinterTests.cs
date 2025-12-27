@@ -1,6 +1,3 @@
-using AutoFixture.Kernel;
-using FluentAssertions;
-
 namespace print_diamond;
 
 public class DiamondPrinterTests
@@ -10,7 +7,7 @@ public class DiamondPrinterTests
     )
     {
         var action = () => DiamondPrinter.DrawForLetter(string.Empty);
-        action.Should().Throw<ArgumentNullException>();
+        action.ShouldThrow<ArgumentNullException>();
     }
 
     [Theory]
@@ -21,7 +18,7 @@ public class DiamondPrinterTests
     )
     {
         var action = () => DiamondPrinter.DrawForLetter(input);
-        action.Should().Throw<ArgumentException>().WithMessage("Input is not a single letter");
+        action.ShouldThrow<ArgumentException>("Input is not a single letter");
     }
 
     [Theory]
@@ -35,7 +32,7 @@ public class DiamondPrinterTests
     )
     {
         var result = DiamondPrinter.DrawForLetter(letter);
-        result.Should().Be(expectedResult);
+        result.ShouldBe(expectedResult);
     }
 
     [Theory]
@@ -49,6 +46,6 @@ public class DiamondPrinterTests
     )
     {
         var result = DiamondPrinter.DrawForLetter(letter);
-        result.Should().Be(expectedResult);
+        result.ShouldBe(expectedResult);
     }
 }

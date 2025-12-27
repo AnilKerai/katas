@@ -8,14 +8,14 @@ public class TextFormatterTests
     )
     {
         var returnValue = TextFormatter.Format(randomString);
-        returnValue.Should().BeOfType<string>();
+        returnValue.ShouldBeOfType<string>();
     }
     
     [Fact]
     public void Format_ShouldReturnEmptyString_WhenGivenNullInput()
     {
-        var returnValue = TextFormatter.Format(null);
-        returnValue.Should().BeNullOrEmpty();
+        var returnValue = TextFormatter.Format(null!);
+        returnValue.ShouldBeNullOrEmpty();
     }
 
     [Theory]
@@ -29,6 +29,6 @@ public class TextFormatterTests
     )
     {
         var returnValue = TextFormatter.Format(inputText);
-        returnValue.Should().Be(expectedText);
+        returnValue.ShouldBe(expectedText);
     }
 }

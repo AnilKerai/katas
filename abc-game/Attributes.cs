@@ -1,7 +1,4 @@
 using AutoFixture.Xunit2;
-using AutoFixture;
-using AutoFixture.AutoNSubstitute;
-using Xunit;
 using Xunit.Sdk;
 
 namespace abc_game;
