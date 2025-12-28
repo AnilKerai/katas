@@ -1,12 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "abc-game", "abc-game\abc-game.csproj", "{D40DD91A-4554-454C-A668-313AFCE1D20C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABCGame", "ABCGame\ABCGame.csproj", "{D40DD91A-4554-454C-A668-313AFCE1D20C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bowling-score-calc", "bowling-score-calc\bowling-score-calc.csproj", "{5089F3C2-AA73-40B2-8547-EC825CD19F00}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BowlingScoreCalculator", "BowlingScoreCalculator\BowlingScoreCalculator.csproj", "{5089F3C2-AA73-40B2-8547-EC825CD19F00}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "print-diamond", "print-diamond\print-diamond.csproj", "{B2C318AF-D0FD-4720-8605-4D85324484A3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrintDiamond", "PrintDiamond\PrintDiamond.csproj", "{B2C318AF-D0FD-4720-8605-4D85324484A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "text-formatter", "text-formatter\text-formatter.csproj", "{D1BF9E0D-A1E1-4135-812B-FF08BC2A4957}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextFormatter", "TextFormatter\TextFormatter.csproj", "{D1BF9E0D-A1E1-4135-812B-FF08BC2A4957}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reordering", "Reordering\Reordering.csproj", "{BCF32728-83DB-46BB-9470-7924E3E3AC78}"
 EndProject
