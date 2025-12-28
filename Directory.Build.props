@@ -1,0 +1,41 @@
+<Project>
+  <!-- Common test dependencies injected for all kata test projects -->
+  <ItemGroup Condition="'$(MSBuildProjectName)' != 'Katas.Testing'">
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="xunit" />
+    <PackageReference Include="xunit.runner.visualstudio">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="coverlet.collector">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Shouldly" />
+    <PackageReference Include="AutoFixture" />
+    <PackageReference Include="AutoFixture.AutoNSubstitute" />
+    <PackageReference Include="AutoFixture.Idioms" />
+    <PackageReference Include="AutoFixture.Xunit2" />
+    <PackageReference Include="NSubstitute" />
+  </ItemGroup>
+
+  <!-- Global usings so new katas don't need to add a Usings.cs file -->
+  <ItemGroup Condition="'$(MSBuildProjectName)' != 'Katas.Testing'">
+    <Using Include="Xunit" />
+    <Using Include="AutoFixture" />
+    <Using Include="AutoFixture.Xunit2" />
+    <Using Include="Shouldly" />
+    <Using Include="Katas.Testing" />
+  </ItemGroup>
+
+  <!-- Reference shared testing utilities automatically -->
+  <ItemGroup Condition="'$(MSBuildProjectName)' != 'Katas.Testing'">
+    <ProjectReference Include="../Katas.Testing/Katas.Testing.csproj" />
+  </ItemGroup>
+
+  <!-- Remove any per-project duplicated helpers/usings -->
+  <ItemGroup Condition="'$(MSBuildProjectName)' != 'Katas.Testing'">
+    <Compile Remove="Attributes.cs" />
+    <Compile Remove="Usings.cs" />
+  </ItemGroup>
+</Project>

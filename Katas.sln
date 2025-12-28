@@ -10,6 +10,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextFormatter", "TextFormat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reordering", "Reordering\Reordering.csproj", "{BCF32728-83DB-46BB-9470-7924E3E3AC78}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MagicSquare", "MagicSquare\MagicSquare.csproj", "{930CCB73-BD87-40A8-ADC9-7668CFB1B91B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Katas.Testing", "Katas.Testing\Katas.Testing.csproj", "{DBCADF8E-39DD-4D38-96D9-15F252B882EB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +40,13 @@ Global
 		{BCF32728-83DB-46BB-9470-7924E3E3AC78}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BCF32728-83DB-46BB-9470-7924E3E3AC78}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BCF32728-83DB-46BB-9470-7924E3E3AC78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{930CCB73-BD87-40A8-ADC9-7668CFB1B91B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{930CCB73-BD87-40A8-ADC9-7668CFB1B91B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{930CCB73-BD87-40A8-ADC9-7668CFB1B91B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{930CCB73-BD87-40A8-ADC9-7668CFB1B91B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBCADF8E-39DD-4D38-96D9-15F252B882EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBCADF8E-39DD-4D38-96D9-15F252B882EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBCADF8E-39DD-4D38-96D9-15F252B882EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBCADF8E-39DD-4D38-96D9-15F252B882EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
