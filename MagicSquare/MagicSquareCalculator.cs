@@ -112,14 +112,7 @@ public class MagicSquareCalculator
             else
             {
                 // Fill remaining pairs
-                var number = magicNumber - result[0, 0] - result[0, 2];
-                
-                var numberExists = pairs.Any(p => p.Contains(number));
-                
-                if (!numberExists)
-                    continue;
-                
-                result[0, 1] = number;
+                result[0, 1] = magicNumber - result[0, 0] - result[0, 2];
                 result[1, 0] = magicNumber - result[0, 0] - result[2, 0];
                 result[1, 2] = magicNumber - result[0, 2] - result[2, 2];
                 result[2, 1] = magicNumber - result[2, 0] - result[2, 2];
