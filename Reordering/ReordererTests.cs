@@ -1,4 +1,4 @@
-﻿namespace Reordering;
+namespace Reordering;
 
 public class ReordererTests
 {
@@ -15,8 +15,8 @@ public class ReordererTests
     ]
     public void Reorder_WhenStartIndexIsOutsideOfInputArrayBounds_ThrowArgumentOutOfRangeException(char[] input, int start)
     {
-        var action = () => GetReorderer().Reorder(input, start, 3, 8);
-        action.ShouldThrow<ArgumentOutOfRangeException>(nameof(start));
+        var ex = Should.Throw<ArgumentOutOfRangeException>(() => GetReorderer().Reorder(input, start, 3, 8));
+        ex.Message.ShouldContain(nameof(start));
     }
     
     [Theory]
@@ -32,8 +32,8 @@ public class ReordererTests
     ]
     public void Reorder_WhenEndIndexIsOutsideOfInputArrayBounds_ThrowArgumentOutOfRangeException(char[] input, int end)
     {
-        var action = () => GetReorderer().Reorder(input, 2, end, 8);
-        action.ShouldThrow<ArgumentOutOfRangeException>(nameof(end));
+        var ex = Should.Throw<ArgumentOutOfRangeException>(() => GetReorderer().Reorder(input, 2, end, 8));
+        ex.Message.ShouldContain(nameof(end));
     }
     
     [Theory]
@@ -45,8 +45,8 @@ public class ReordererTests
     ]
     public void Reorder_WhenEndIndexIsLessThanStartIndex_ThrowArgumentException(char[] input, int start, int end)
     {
-        var action = () => GetReorderer().Reorder(input, start, end, 8);
-        action.ShouldThrow<ArgumentException>($"{nameof(end)} must be greater than {nameof(start)}");
+        var ex = Should.Throw<ArgumentException>(() => GetReorderer().Reorder(input, start, end, 8));
+        ex.Message.ShouldContain($"{nameof(end)} must be greater than {nameof(start)}");
     }
     
     [Theory]
@@ -62,8 +62,8 @@ public class ReordererTests
     ]
     public void Reorder_WhenDestinationIndexIsNotWithinArrayCountPlusOne_ThrowArgumentOutOfRangeException(char[] input, int destination)
     {
-        var action = () => GetReorderer().Reorder(input, 2, 8, destination);
-        action.ShouldThrow<ArgumentOutOfRangeException>(nameof(destination));
+        var ex = Should.Throw<ArgumentOutOfRangeException>(() => GetReorderer().Reorder(input, 2, 8, destination));
+        ex.Message.ShouldContain(nameof(destination));
     }
     
     [Theory]
@@ -76,8 +76,8 @@ public class ReordererTests
     ]
     public void Reorder_WhenDestinationIndexIsWithinSelectedRange_ThrowArgumentException(char[] input, int start, int end, int destination)
     {
-        var action = () => GetReorderer().Reorder(input, start, end, destination);
-        action.ShouldThrow<ArgumentException>($"Destination ({destination}) index is within selected range ({start}-{end})");
+        var ex = Should.Throw<ArgumentException>(() => GetReorderer().Reorder(input, start, end, destination));
+        ex.Message.ShouldContain($"Destination ({destination}) index is within selected range ({start}-{end})");
     }
     
     [Theory]

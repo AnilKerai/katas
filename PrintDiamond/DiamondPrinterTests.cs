@@ -17,8 +17,8 @@ public class DiamondPrinterTests
         string input
     )
     {
-        var action = () => DiamondPrinter.DrawForLetter(input);
-        action.ShouldThrow<ArgumentException>("Input is not a single letter");
+        var ex = Should.Throw<ArgumentException>(() => DiamondPrinter.DrawForLetter(input));
+        ex.Message.ShouldContain("Input is not a single letter");
     }
 
     [Theory]
