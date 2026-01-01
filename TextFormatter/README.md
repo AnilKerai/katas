@@ -18,5 +18,3 @@ Notes:
 - Consecutive space characters produced adjacent to the end of lines are insignificant for the purposes of the task.
 - Assume output text will be viewed in a mono-spaced font on a plain text editor or basic terminal.
 - The minimum space between columns should be computed from the text and not hard-coded.
-
-[Source https://rosettacode.org]
