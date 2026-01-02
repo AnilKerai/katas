@@ -2,11 +2,15 @@ namespace MagicSquare;
 
 public class MagicSquareCalculatorTests
 {
+    public static IEnumerable<object[]> WhenGivenIncorrectNumberOfValuesData(){
+        yield return [new List<decimal>()];
+        yield return [new List<decimal>{ 1.0m }];
+    }
+    
     [Theory]
-    [InlineData(new double[] { })]
-    [InlineData(new[] { 1.0 })]
+    [MemberData(nameof(WhenGivenIncorrectNumberOfValuesData))]
     public void CalculateMagicNumber_WhenGivenIncorrectNumberOfValues_ThrowsArgumentException(
-        double[] values)
+        List<decimal> values)
     {
         var magicSquareCalculator = new MagicSquareCalculator();
         Action action = () => magicSquareCalculator.CalculateMagicNumber(values);
@@ -15,10 +19,14 @@ public class MagicSquareCalculatorTests
         ex.Message.ShouldContain("The number of values must be equal to the square of the grid size.");
     }
     
+    public static IEnumerable<object[]> WhenGivenArrayOfAllZerosData(){
+        yield return [new List<decimal>{ 0.0m, 0.0m, 0.0m, 0.0m, 0.0m, 0.0m, 0.0m, 0.0m, 0.0m }];
+    }
+    
     [Theory]
-    [InlineData(new[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 })]
+    [MemberData(nameof(WhenGivenArrayOfAllZerosData))]
     public void CalculateMagicNumber_WhenGivenArrayOfAllZeros_ReturnsEmptyResult(
-        double[] values)
+        List<decimal> values)
     {
         var magicSquareCalculator = new MagicSquareCalculator();
         var result = magicSquareCalculator.CalculateMagicNumber(values);
@@ -27,22 +35,30 @@ public class MagicSquareCalculatorTests
         result.Grid.ShouldBeNull();
     }
     
+    public static IEnumerable<object[]> TotalOfInputValuesIsNotDivisibleByGridSizeData(){
+        yield return [new List<decimal>{ 1.0m, 1.0m, 1.0m, 1.0m, 1.0m, 1.0m, 1.0m, 1.0m, 2.0m }];
+    }
+    
     [Theory]
-    [InlineData(new[] { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0})]
-    public void CalculateMagicNumber_TotalOfInputValuesIsNotDivisbleByGridSize_ThrowsException(
-        double[] values)
+    [MemberData(nameof(TotalOfInputValuesIsNotDivisibleByGridSizeData))]
+    public void CalculateMagicNumber_TotalOfInputValuesIsNotDivisibleByGridSize_ThrowsException(
+        List<decimal> values)
     {
         var magicSquareCalculator = new MagicSquareCalculator();
-        Action action = () => magicSquareCalculator.CalculateMagicNumber(values);
+        Action action = () => magicSquareCalculator.CalculateMagicNumber(values.Select(v => (decimal)v).ToList());
         
         var ex = action.ShouldThrow<InvalidOperationException>();
         ex.Message.ShouldContain("The total of the input values is not divisible by the grid size.");
     }
     
+    public static IEnumerable<object[]> InputArrayDoesNotContainMDividedByGridSizeValueData(){
+        yield return [new List<decimal>{ 1.0m, 1.0m, 1.0m, 1.0m, 1.0m, 1.0m, 1.0m, 1.0m, 10.0m }];
+    }
+    
     [Theory]
-    [InlineData(new[] { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 10.0})]
+    [MemberData(nameof(InputArrayDoesNotContainMDividedByGridSizeValueData))]
     public void CalculateMagicNumber_InputArrayDoesNotContainMDividedByGridSizeValue_ThrowsException(
-        double[] values)
+        List<decimal> values)
     {
         var magicSquareCalculator = new MagicSquareCalculator();
         Action action = () => magicSquareCalculator.CalculateMagicNumber(values);
@@ -51,29 +67,31 @@ public class MagicSquareCalculatorTests
         ex.Message.ShouldContain("The input array does not contain the value M / GridSize");
     }
     
+    public static IEnumerable<object[]> WhenGivenCorrectNumberOfValuesData(){
+        yield return [
+            new List<decimal>{ 1.0m, 1.5m, 2.0m, 2.5m, 3.0m, 3.5m, 4.0m, 4.5m, 5.0m },
+            9.0m,
+            new [] { 4.5m, 1.0m, 3.5m },
+            new [] { 2.0m, 3.0m, 4.0m },
+            new [] { 2.5m, 5.0m, 1.5m }
+        ];
+        yield return [
+            new List<decimal>{ 1.0m, 2.0m, 3.0m, 4.0m, 5.0m, 6.0m, 7.0m, 8.0m, 9.0m },
+            15.0m,
+            new [] { 8.0m, 1.0m, 6.0m },
+            new [] { 3.0m, 5.0m, 7.0m },
+            new [] { 4.0m, 9.0m, 2.0m }
+        ];
+    }
+    
     [Theory]
-    [InlineData(
-        new[] { 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0 }, 
-        9.0, 
-        new[] { 4.5, 1.0, 3.5 },
-        new[] { 2.0, 3.0, 4.0 },
-        new[] { 2.5, 5.0, 1.5 }
-        )
-    ]
-    [InlineData(
-        new[] { 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0 }, 
-        15.0, 
-        new[] { 8.0, 1.0, 6.0 },
-        new[] { 3.0, 5.0, 7.0 },
-        new[] { 4.0, 9.0, 2.0 }
-        )
-    ]
+    [MemberData(nameof(WhenGivenCorrectNumberOfValuesData))]
     public void CalculateMagicNumber_WhenGivenCorrectNumberOfValues_ReturnsCorrectNumber(
-        double[] values,
-        double expectedMagicNumber,
-        double[] expectedFirstRow,
-        double[] expectedSecondRow,
-        double[] expectedThirdRow)
+        List<decimal> values,
+        decimal expectedMagicNumber,
+        decimal[] expectedFirstRow,
+        decimal[] expectedSecondRow,
+        decimal[] expectedThirdRow)
     {
         var magicSquareCalculator = new MagicSquareCalculator();
         var result = magicSquareCalculator.CalculateMagicNumber(values);
@@ -82,7 +100,7 @@ public class MagicSquareCalculatorTests
         result.MagicNumber.ShouldBe(expectedMagicNumber);
         result.Grid.ShouldNotBeNull();
 
-        var expectedGrid = new List<double[]>()
+        var expectedGrid = new List<decimal[]>
         {
             expectedFirstRow,
             expectedSecondRow,
@@ -93,7 +111,7 @@ public class MagicSquareCalculatorTests
         {
             for (var j = 0; j < result.Grid.GetLength(1); j++)
             {
-                result.Grid.GetValue(i, j).ShouldBe(expectedGrid[i][j]);
+                ((decimal) result.Grid.GetValue(i, j)!).ShouldBe(expectedGrid[i][j]);
             }
         }
     }

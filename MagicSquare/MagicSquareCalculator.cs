@@ -5,9 +5,9 @@ public class MagicSquareCalculator
     private const int GridSize = 3;
     private const int ExpectedNumberOfPairs = 4;
     
-    public MagicSquareResult CalculateMagicNumber(double[] values)
+    public MagicSquareResult CalculateMagicNumber(List<decimal> values)
     {
-        if (values.Length != GridSize * GridSize)
+        if (values.Count != GridSize * GridSize)
             throw new ArgumentException("The number of values must be equal to the square of the grid size.");
         
         if (values.All(v => v == 0))
@@ -24,7 +24,7 @@ public class MagicSquareCalculator
         if (!values.Contains(centerNumber))
             throw new InvalidOperationException("The input array does not contain the value M / GridSize");
 
-        var pairs = new List<double[]>();
+        var pairs = new List<decimal[]>();
         var expectedSumOfRemainingPairs = magicNumber - centerNumber;
         var remainingNumbers = 
             values
@@ -62,9 +62,9 @@ public class MagicSquareCalculator
         };
     }
 
-    private double[,] CalculateGrid(List<double[]> pairs, double centerNumber, double magicNumber)
+    private decimal[,] CalculateGrid(List<decimal[]> pairs, decimal centerNumber, decimal magicNumber)
     {
-        var result = new double[GridSize, GridSize];
+        var result = new decimal[GridSize, GridSize];
         
         // Set center
         result[1, 1] = centerNumber;
@@ -148,8 +148,8 @@ public class MagicSquareCalculator
 
 public class MagicSquareResult
 {
-    public double[,]? Grid { get; set; }
-    public double? MagicNumber { get; set; }
+    public decimal[,]? Grid { get; set; }
+    public decimal? MagicNumber { get; set; }
     public string? Reason { get; set; }
     public static MagicSquareResult Empty => new();
 }
