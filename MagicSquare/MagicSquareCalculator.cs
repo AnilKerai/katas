@@ -7,49 +7,20 @@ public class MagicSquareCalculator
     
     public MagicSquareResult CalculateMagicNumber(IReadOnlyList<decimal> values)
     {
-        if (values.Count != GridSize * GridSize)
-            throw new ArgumentException("The number of values must be equal to the square of the grid size.");
+        EnsureCorrectCount(values);
         
-        if (values.All(v => v == 0))
+        if (IsAllZeros(values))
             return MagicSquareResult.Empty;
 
-        var total = values.Sum();
-        
-        if (total % GridSize != 0)
-            throw new InvalidOperationException("The total of the input values is not divisible by the grid size.");
-        
-        var magicNumber = total / GridSize;
-        var centerNumber = magicNumber / GridSize;
-        
-        if (!values.Contains(centerNumber))
-            throw new InvalidOperationException("The input array does not contain the value M / GridSize");
+        var (magicNumber, centerNumber) = ComputeMagicAndCenter(values);
 
-        var pairs = new List<decimal[]>();
+        EnsureCenterExists(values, centerNumber);
+
         var expectedSumOfRemainingPairs = magicNumber - centerNumber;
-        var remainingNumbers = 
-            values
-                .Where(v => v != centerNumber)
-                .OrderByDescending(v => v)
-                .ToArray();
+        var remainingNumbers = BuildRemainingNumbers(values, centerNumber);
 
-        for (var i = 0; i < ExpectedNumberOfPairs; i++)
-        {
-            var pairFound = false;
-            
-            for (var j = i + 1; j < remainingNumbers.Length; j++)
-            {
-                if (remainingNumbers[i] + remainingNumbers[j] != expectedSumOfRemainingPairs) continue;
-                
-                pairs.Add([remainingNumbers[i], remainingNumbers[j]]);
-                pairFound = true;
-                break;
-            }
-            
-            if (!pairFound)
-                return new MagicSquareResult { Reason = "The given number is not a magic square" };
-        }
-        
-        if (pairs.Count != ExpectedNumberOfPairs)
+        var pairs = FindPairs(remainingNumbers, expectedSumOfRemainingPairs);
+        if (pairs is null || pairs.Count != ExpectedNumberOfPairs)
             return new MagicSquareResult { Reason = "The given number is not a magic square" };
 
         var solution = CalculateGrid(pairs, centerNumber, magicNumber);
@@ -62,7 +33,7 @@ public class MagicSquareCalculator
         };
     }
 
-    private decimal[,] CalculateGrid(List<decimal[]> pairs, decimal centerNumber, decimal magicNumber)
+    private decimal[,] CalculateGrid(IReadOnlyList<decimal[]> pairs, decimal centerNumber, decimal magicNumber)
     {
         var result = new decimal[GridSize, GridSize];
         
@@ -143,6 +114,58 @@ public class MagicSquareCalculator
         }
         
         return result;
+    }
+
+    private static void EnsureCorrectCount(IReadOnlyList<decimal> values)
+    {
+        if (values.Count != GridSize * GridSize)
+            throw new ArgumentException("The number of values must be equal to the square of the grid size.");
+    }
+
+    private static bool IsAllZeros(IReadOnlyList<decimal> values) => values.All(v => v == 0);
+
+    private static (decimal magicNumber, decimal centerNumber) ComputeMagicAndCenter(IReadOnlyList<decimal> values)
+    {
+        var total = values.Sum();
+        if (total % GridSize != 0)
+            throw new InvalidOperationException("The total of the input values is not divisible by the grid size.");
+
+        var magicNumber = total / GridSize;
+        var centerNumber = magicNumber / GridSize;
+        return (magicNumber, centerNumber);
+    }
+
+    private static void EnsureCenterExists(IReadOnlyList<decimal> values, decimal centerNumber)
+    {
+        if (!values.Contains(centerNumber))
+            throw new InvalidOperationException("The input array does not contain the value M / GridSize");
+    }
+
+    private static decimal[] BuildRemainingNumbers(IReadOnlyList<decimal> values, decimal centerNumber)
+    {
+        return values
+            .Where(v => v != centerNumber)
+            .OrderByDescending(v => v)
+            .ToArray();
+    }
+
+    private static List<decimal[]>? FindPairs(decimal[] remainingNumbers, decimal expectedSumOfRemainingPairs)
+    {
+        var pairs = new List<decimal[]>();
+        for (var i = 0; i < ExpectedNumberOfPairs; i++)
+        {
+            var pairFound = false;
+            for (var j = i + 1; j < remainingNumbers.Length; j++)
+            {
+                if (remainingNumbers[i] + remainingNumbers[j] != expectedSumOfRemainingPairs) continue;
+                pairs.Add([remainingNumbers[i], remainingNumbers[j]]);
+                pairFound = true;
+                break;
+            }
+            if (!pairFound)
+                return null;
+        }
+        return pairs;
     }
 }
 
