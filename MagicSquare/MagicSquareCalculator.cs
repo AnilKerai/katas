@@ -3,9 +3,9 @@ namespace MagicSquare;
 public class MagicSquareCalculator
 {
     private const int GridSize = 3;
-    private const int ExpectedNumberOfPairs = 4;
+    private static int ExpectedNumberOfPairs => (GridSize * GridSize - 1) / 2;
     
-    public MagicSquareResult CalculateMagicNumber(List<decimal> values)
+    public MagicSquareResult CalculateMagicNumber(IReadOnlyList<decimal> values)
     {
         if (values.Count != GridSize * GridSize)
             throw new ArgumentException("The number of values must be equal to the square of the grid size.");
@@ -146,10 +146,10 @@ public class MagicSquareCalculator
     }
 }
 
-public class MagicSquareResult
+public sealed record MagicSquareResult
 {
-    public decimal[,]? Grid { get; set; }
-    public decimal? MagicNumber { get; set; }
-    public string? Reason { get; set; }
+    public decimal[,]? Grid { get; init; }
+    public decimal? MagicNumber { get; init; }
+    public string? Reason { get; init; }
     public static MagicSquareResult Empty => new();
 }
