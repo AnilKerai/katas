@@ -111,7 +111,7 @@ public class MagicSquareCalculatorTests
         {
             for (var j = 0; j < result.Grid.GetLength(1); j++)
             {
-                ((decimal) result.Grid.GetValue(i, j)!).ShouldBe(expectedGrid[i][j]);
+                result.Grid![i, j].ShouldBe(expectedGrid[i][j]);
             }
         }
     }

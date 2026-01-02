@@ -151,21 +151,38 @@ public class MagicSquareCalculator
 
     private static List<decimal[]>? FindPairs(decimal[] remainingNumbers, decimal expectedSumOfRemainingPairs)
     {
+        var counts = remainingNumbers
+            .GroupBy(x => x)
+            .ToDictionary(g => g.Key, g => g.Count());
+
+        var ordered = counts.Keys.OrderByDescending(v => v).ToArray();
         var pairs = new List<decimal[]>();
-        for (var i = 0; i < ExpectedNumberOfPairs; i++)
+
+        foreach (var x in ordered)
         {
-            var pairFound = false;
-            for (var j = i + 1; j < remainingNumbers.Length; j++)
+            while (counts.TryGetValue(x, out var cx) && cx > 0)
             {
-                if (remainingNumbers[i] + remainingNumbers[j] != expectedSumOfRemainingPairs) continue;
-                pairs.Add([remainingNumbers[i], remainingNumbers[j]]);
-                pairFound = true;
-                break;
+                var y = expectedSumOfRemainingPairs - x;
+                if (!counts.TryGetValue(y, out var cy))
+                    return null;
+
+                if (x == y)
+                {
+                    if (cy < 2) return null;
+                    counts[x] = cx - 2;
+                }
+                else
+                {
+                    if (cy < 1) return null;
+                    counts[x] = cx - 1;
+                    counts[y] = cy - 1;
+                }
+
+                pairs.Add([x, y]);
             }
-            if (!pairFound)
-                return null;
         }
-        return pairs;
+
+        return pairs.Count == ExpectedNumberOfPairs ? pairs : null;
     }
 }
 
