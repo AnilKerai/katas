@@ -1,0 +1,14 @@
+<Project>
+
+    <!--
+        Deliberately does NOT import the parent Directory.Build.props. The root props inject test
+        packages (Microsoft.NET.Test.Sdk, ...) and a relative ../Katas.Testing project reference into
+        every project; that breaks a console app (the Test SDK generates its own entry point) and the
+        relative path is wrong for the nested src/ and tests/ project folders.
+    -->
+    <PropertyGroup>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <IsPackable>false</IsPackable>
+    </PropertyGroup>
+
+</Project>
