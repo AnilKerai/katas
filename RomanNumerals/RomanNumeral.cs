@@ -4,6 +4,8 @@ namespace RomanNumerals;
 
 public static class RomanNumeral
 {
+    private const int LargestNumber = 3999;
+
     // Subtractive pairs sit in the table as symbols in their own right, so one largest-first pass handles them.
     private static readonly (int Value, string Symbol)[] Symbols =
     [
@@ -24,6 +26,9 @@ public static class RomanNumeral
 
     public static string From(int number)
     {
+        ArgumentOutOfRangeException.ThrowIfNegativeOrZero(number);
+        ArgumentOutOfRangeException.ThrowIfGreaterThan(number, LargestNumber);
+
         var numeral = new StringBuilder();
         var remaining = number;
 
