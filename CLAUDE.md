@@ -13,6 +13,7 @@ Each kata is its own project directory at the repo root, referenced from `Katas.
 - `MagicSquare/`
 - `PrintDiamond/`
 - `Reordering/`
+- `RomanNumerals/`
 - `TextFormatter/`
 
 `Katas.Testing/` is a shared support project (not a kata) referenced automatically by every kata.
