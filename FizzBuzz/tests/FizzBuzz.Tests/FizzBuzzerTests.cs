@@ -2,51 +2,35 @@ namespace FizzBuzz.Tests;
 
 public class FizzBuzzerTests
 {
-    [Fact]
-    public void Convert_ShouldReturn1_WhenInputIs1()
+    [Theory]
+    [InlineData(1, "1")]
+    [InlineData(2, "2")]
+    public void Convert_ShouldReturnNumber_WhenNotDivisibleByThreeOrFive(int n, string expected)
     {
-        FizzBuzzer.Convert(1).ShouldBe("1");
+        FizzBuzzer.Convert(n).ShouldBe(expected);
     }
 
-    [Fact]
-    public void Convert_ShouldReturn2_WhenInputIs2()
+    [Theory]
+    [InlineData(3)]
+    [InlineData(6)]
+    public void Convert_ShouldReturnFizz_WhenDivisibleByThree(int n)
     {
-        FizzBuzzer.Convert(2).ShouldBe("2");
+        FizzBuzzer.Convert(n).ShouldBe("Fizz");
     }
 
-    [Fact]
-    public void Convert_ShouldReturnFizz_WhenInputIs3()
+    [Theory]
+    [InlineData(5)]
+    [InlineData(10)]
+    public void Convert_ShouldReturnBuzz_WhenDivisibleByFive(int n)
     {
-        FizzBuzzer.Convert(3).ShouldBe("Fizz");
+        FizzBuzzer.Convert(n).ShouldBe("Buzz");
     }
 
-    [Fact]
-    public void Convert_ShouldReturnFizz_WhenInputIs6()
+    [Theory]
+    [InlineData(15)]
+    [InlineData(30)]
+    public void Convert_ShouldReturnFizzBuzz_WhenDivisibleByFifteen(int n)
     {
-        FizzBuzzer.Convert(6).ShouldBe("Fizz");
-    }
-
-    [Fact]
-    public void Convert_ShouldReturnBuzz_WhenInputIs5()
-    {
-        FizzBuzzer.Convert(5).ShouldBe("Buzz");
-    }
-
-    [Fact]
-    public void Convert_ShouldReturnBuzz_WhenInputIs10()
-    {
-        FizzBuzzer.Convert(10).ShouldBe("Buzz");
-    }
-
-    [Fact]
-    public void Convert_ShouldReturnFizzBuzz_WhenInputIs15()
-    {
-        FizzBuzzer.Convert(15).ShouldBe("FizzBuzz");
-    }
-
-    [Fact]
-    public void Convert_ShouldReturnFizzBuzz_WhenInputIs30()
-    {
-        FizzBuzzer.Convert(30).ShouldBe("FizzBuzz");
+        FizzBuzzer.Convert(n).ShouldBe("FizzBuzz");
     }
 }
