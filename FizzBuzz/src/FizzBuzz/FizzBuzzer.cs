@@ -2,5 +2,10 @@ namespace FizzBuzz;
 
 public static class FizzBuzzer
 {
-    public static string Convert(int n) => n % 3 == 0 ? "Fizz" : n.ToString();
+    public static string Convert(int n)
+    {
+        if (n % 3 == 0) return "Fizz";
+        if (n == 5) return "Buzz";
+        return n.ToString();
+    }
 }
