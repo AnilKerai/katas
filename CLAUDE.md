@@ -9,7 +9,7 @@ Each kata is its own project directory at the repo root, referenced from `Katas.
 
 - `ABCGame/`
 - `BowlingScoreCalculator/`
-- `FizzBuzz/` (the exception to the single-project layout, see below)
+- `FizzBuzz/`
 - `MagicSquare/`
 - `PrintDiamond/`
 - `Reordering/`
@@ -24,12 +24,7 @@ A typical kata directory contains:
 - `<Name>Tests.cs` — the xUnit tests
 - `<Name>.csproj` — the project file
 
-**FizzBuzz is the exception to the single-project convention.** It is a `net10.0` console app with
-separate `src/` and `tests/` projects and its own `FizzBuzz/FizzBuzz.sln` (both projects are also
-registered in `Katas.sln`). Its `FizzBuzz/Directory.Build.props` deliberately does not inherit the
-root props: the root props would inject the test stack into the console app and a relative
-`Katas.Testing` reference that is wrong for the nested folders. Central package management from the
-root `Directory.Packages.props` still applies.
+FizzBuzz targets `net10.0` and is also a console app (`OutputType` `Exe`, `GenerateProgramFile=false`), run with `dotnet run --project FizzBuzz`.
 
 ## Languages & test frameworks
 
