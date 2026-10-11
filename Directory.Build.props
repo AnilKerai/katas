@@ -1,4 +1,9 @@
 <Project>
+  <!-- Single place the target framework is set; project files must not set TargetFramework -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+  </PropertyGroup>
+
   <!-- Common test dependencies injected for all kata test projects -->
   <ItemGroup Condition="'$(MSBuildProjectName)' != 'Katas.Testing'">
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
