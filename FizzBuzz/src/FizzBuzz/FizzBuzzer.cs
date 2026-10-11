@@ -11,4 +11,7 @@ public static class FizzBuzzer
         if (n % 5 == 0) return "Buzz";
         return n.ToString();
     }
+
+    public static IEnumerable<string> Sequence(int from, int to) =>
+        Enumerable.Range(from, to - from + 1).Select(Convert);
 }
