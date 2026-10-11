@@ -25,4 +25,10 @@ public class FizzBuzzerTests
     {
         FizzBuzzer.Convert(6).ShouldBe("Fizz");
     }
+
+    [Fact]
+    public void Convert_ShouldReturnBuzz_WhenInputIs5()
+    {
+        FizzBuzzer.Convert(5).ShouldBe("Buzz");
+    }
 }
