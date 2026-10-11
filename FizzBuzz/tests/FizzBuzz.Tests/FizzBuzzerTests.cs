@@ -33,4 +33,12 @@ public class FizzBuzzerTests
     {
         FizzBuzzer.Convert(n).ShouldBe("FizzBuzz");
     }
+
+    [Theory]
+    [InlineData(0)]
+    [InlineData(-1)]
+    public void Convert_ShouldThrowArgumentOutOfRange_WhenNotPositive(int n)
+    {
+        Should.Throw<ArgumentOutOfRangeException>(() => FizzBuzzer.Convert(n));
+    }
 }
