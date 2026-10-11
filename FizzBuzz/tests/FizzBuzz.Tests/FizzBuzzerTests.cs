@@ -52,4 +52,13 @@ public class FizzBuzzerTests
 
         FizzBuzzer.Sequence(1, 15).ShouldBe(expected);
     }
+
+    [Theory]
+    [InlineData(0, 5)]
+    [InlineData(5, 4)]
+    public void Sequence_ShouldThrowArgumentOutOfRange_WhenCalledWithInvalidRange(int first, int last)
+    {
+        // Not enumerated: validation must happen eagerly, on the call itself.
+        Should.Throw<ArgumentOutOfRangeException>(() => FizzBuzzer.Sequence(first, last));
+    }
 }
