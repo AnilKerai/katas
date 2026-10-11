@@ -10,4 +10,13 @@ public class RomanNumeralTests
     {
         RomanNumeral.From(number).ShouldBe(expected);
     }
+
+    [Theory]
+    [InlineData(5, "V")]
+    [InlineData(6, "VI")]
+    [InlineData(8, "VIII")]
+    public void From_ShouldWriteSymbolsLargestFirst_WhenNumberIsASumOfSymbols(int number, string expected)
+    {
+        RomanNumeral.From(number).ShouldBe(expected);
+    }
 }
