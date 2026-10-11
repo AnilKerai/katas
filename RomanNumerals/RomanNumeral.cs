@@ -2,6 +2,7 @@ using System.Text;
 
 namespace RomanNumerals;
 
+/// <summary>Writes whole numbers as Roman numerals.</summary>
 public static class RomanNumeral
 {
     private const int LargestNumber = 3999;
@@ -24,6 +25,11 @@ public static class RomanNumeral
         (1, "I")
     ];
 
+    /// <summary>Returns the Roman numeral for <paramref name="number"/>, for example <c>MCMXCIV</c> for 1994.</summary>
+    /// <param name="number">A whole number from 1 to 3999.</param>
+    /// <exception cref="ArgumentOutOfRangeException">
+    /// <paramref name="number"/> is less than 1 or greater than 3999.
+    /// </exception>
     public static string From(int number)
     {
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(number);
