@@ -46,4 +46,13 @@ public class RomanNumeralTests
     {
         RomanNumeral.From(number).ShouldBe(expected);
     }
+
+    [Theory]
+    [InlineData(0)]
+    [InlineData(-1)]
+    [InlineData(4000)]
+    public void From_ShouldThrowArgumentOutOfRange_WhenNumberIsNotBetweenOneAnd3999(int number)
+    {
+        Should.Throw<ArgumentOutOfRangeException>(() => RomanNumeral.From(number));
+    }
 }
