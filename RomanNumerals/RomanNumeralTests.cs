@@ -19,4 +19,11 @@ public class RomanNumeralTests
     {
         RomanNumeral.From(number).ShouldBe(expected);
     }
+
+    [Theory]
+    [InlineData(4, "IV")]
+    public void From_ShouldSubtractSmallerSymbolWrittenFirst_WhenSymbolWouldRepeatFourTimes(int number, string expected)
+    {
+        RomanNumeral.From(number).ShouldBe(expected);
+    }
 }
