@@ -19,4 +19,10 @@ public class FizzBuzzerTests
     {
         FizzBuzzer.Convert(3).ShouldBe("Fizz");
     }
+
+    [Fact]
+    public void Convert_ShouldReturnFizz_WhenInputIs6()
+    {
+        FizzBuzzer.Convert(6).ShouldBe("Fizz");
+    }
 }
