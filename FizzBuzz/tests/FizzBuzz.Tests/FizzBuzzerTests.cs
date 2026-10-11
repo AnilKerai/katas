@@ -41,4 +41,15 @@ public class FizzBuzzerTests
     {
         Should.Throw<ArgumentOutOfRangeException>(() => FizzBuzzer.Convert(n));
     }
+
+    [Fact]
+    public void Sequence_ShouldReturnFizzBuzzValues_WhenRangeIsOneToFifteen()
+    {
+        string[] expected =
+        [
+            "1", "2", "Fizz", "4", "Buzz", "Fizz", "7", "8", "Fizz", "Buzz", "11", "Fizz", "13", "14", "FizzBuzz"
+        ];
+
+        FizzBuzzer.Sequence(1, 15).ShouldBe(expected);
+    }
 }
