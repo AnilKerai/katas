@@ -12,6 +12,11 @@ public static class FizzBuzzer
         return n.ToString();
     }
 
-    public static IEnumerable<string> Sequence(int from, int to) =>
-        Enumerable.Range(from, to - from + 1).Select(Convert);
+    public static IEnumerable<string> Sequence(int from, int to)
+    {
+        ArgumentOutOfRangeException.ThrowIfNegativeOrZero(from);
+        ArgumentOutOfRangeException.ThrowIfLessThan(to, from);
+
+        return Enumerable.Range(from, to - from + 1).Select(Convert);
+    }
 }
