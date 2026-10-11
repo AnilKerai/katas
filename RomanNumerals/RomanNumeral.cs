@@ -4,9 +4,11 @@ namespace RomanNumerals;
 
 public static class RomanNumeral
 {
+    // Subtractive pairs sit in the table as symbols in their own right, so one largest-first pass handles them.
     private static readonly (int Value, string Symbol)[] Symbols =
     [
         (5, "V"),
+        (4, "IV"),
         (1, "I")
     ];
 
