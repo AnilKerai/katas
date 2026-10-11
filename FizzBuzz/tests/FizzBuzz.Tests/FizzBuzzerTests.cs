@@ -13,4 +13,10 @@ public class FizzBuzzerTests
     {
         FizzBuzzer.Convert(2).ShouldBe("2");
     }
+
+    [Fact]
+    public void Convert_ShouldReturnFizz_WhenInputIs3()
+    {
+        FizzBuzzer.Convert(3).ShouldBe("Fizz");
+    }
 }
