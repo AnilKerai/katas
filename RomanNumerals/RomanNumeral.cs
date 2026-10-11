@@ -7,6 +7,16 @@ public static class RomanNumeral
     // Subtractive pairs sit in the table as symbols in their own right, so one largest-first pass handles them.
     private static readonly (int Value, string Symbol)[] Symbols =
     [
+        (1000, "M"),
+        (900, "CM"),
+        (500, "D"),
+        (400, "CD"),
+        (100, "C"),
+        (90, "XC"),
+        (50, "L"),
+        (40, "XL"),
+        (10, "X"),
+        (9, "IX"),
         (5, "V"),
         (4, "IV"),
         (1, "I")
