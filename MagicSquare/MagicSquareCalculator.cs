@@ -20,7 +20,7 @@ public class MagicSquareCalculator
         var remainingNumbers = BuildRemainingNumbers(values, centerNumber);
 
         var pairs = FindPairs(remainingNumbers, expectedSumOfRemainingPairs);
-        if (pairs is null || pairs.Count != ExpectedNumberOfPairs)
+        if (pairs is null)
             return new MagicSquareResult { Reason = "The given number is not a magic square" };
 
         var solution = CalculateGrid(pairs, centerNumber, magicNumber);
@@ -166,17 +166,9 @@ public class MagicSquareCalculator
                 if (!counts.TryGetValue(y, out var cy))
                     return null;
 
-                if (x == y)
-                {
-                    if (cy < 2) return null;
-                    counts[x] = cx - 2;
-                }
-                else
-                {
-                    if (cy < 1) return null;
-                    counts[x] = cx - 1;
-                    counts[y] = cy - 1;
-                }
+                if (cy < 1) return null;
+                counts[x] = cx - 1;
+                counts[y] = cy - 1;
 
                 pairs.Add([x, y]);
             }

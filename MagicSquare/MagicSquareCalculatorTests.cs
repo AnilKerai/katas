@@ -115,4 +115,26 @@ public class MagicSquareCalculatorTests
             }
         }
     }
+
+    public static IEnumerable<object[]> WhenValuesCannotBePairedAroundTheCenterData(){
+        // Every value must sit opposite one that sums with it to twice the center (here 5, so 10 needs a 0).
+        yield return [new List<decimal>{ 1.0m, 1.0m, 2.0m, 4.0m, 5.0m, 6.0m, 7.0m, 9.0m, 10.0m }];
+        // There are two 8s but only one 2 to sit opposite them.
+        yield return [new List<decimal>{ 8.0m, 8.0m, 7.0m, 6.0m, 5.0m, 4.0m, 4.0m, 2.0m, 1.0m }];
+        // The center value appears seven times, which leaves one pair instead of four.
+        yield return [new List<decimal>{ 1.0m, 1.0m, 1.0m, 1.0m, 1.0m, 1.0m, 1.0m, 2.0m, 0.0m }];
+    }
+
+    [Theory]
+    [MemberData(nameof(WhenValuesCannotBePairedAroundTheCenterData))]
+    public void CalculateMagicNumber_WhenValuesCannotBePairedAroundTheCenter_ReturnsNotAMagicSquare(
+        List<decimal> values)
+    {
+        var magicSquareCalculator = new MagicSquareCalculator();
+        var result = magicSquareCalculator.CalculateMagicNumber(values);
+
+        result.Reason.ShouldBe("The given number is not a magic square");
+        result.MagicNumber.ShouldBeNull();
+        result.Grid.ShouldBeNull();
+    }
 }
