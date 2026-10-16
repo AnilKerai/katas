@@ -1,0 +1,9 @@
+# Production code that an in-process test cannot reach, and so may sit under the coverage target.
+# Read by scripts/coverage-check.sh. One entry per line, with a reason:
+#
+#   <path from repo root>            | <reason>     the whole file
+#   <path from repo root>::<Member>  | <reason>     one method, named as in the cobertura report
+#                                                   (a lambda is `<Outer>b__0_0`, a constructor `.ctor`)
+#
+# Lines starting with # are comments. The script fails on an entry that names an unknown file or member.
+# Dead code is not an exception: delete it. Only list code that tests genuinely cannot execute.
