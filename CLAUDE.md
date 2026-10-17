@@ -108,9 +108,6 @@ branches per production file (any kata `.cs` file except `*Tests.cs`, `bin/`, `o
 projects). It exits 1 if a file is under 100% of lines or 95% of branches, 2 if coverage couldn't be measured.
 It needs `python3` (standard library only). `scripts/coverage-exceptions.txt` lists code a test can't reach
 (`path | reason`, or `path::Member | reason`); dead code is deleted, not listed.
-Known gap: `MagicSquareCalculator.cs` is under target (1 line, 9 branches). Its `CalculateGrid` sum check only
-fails for inputs the algorithm answers wrongly, so no passing test can cover it until the algorithm is fixed
-(follow-up card t_3e6bcf46). It is deliberately not in the exceptions file, so the script exits 1 until then.
 
 ## Conventions & gotchas
 
