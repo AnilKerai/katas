@@ -10,6 +10,8 @@ public class Rover
         (0, 1), (1, 0), (0, -1), (-1, 0)
     ];
 
+    private const int GridSize = 10;
+
     private static readonly string[] DirectionNames = ["N", "E", "S", "W"];
 
     private int _x;
@@ -32,8 +34,11 @@ public class Rover
                     _direction = (_direction + 1) % 4;
                     break;
                 case 'M':
-                    _x += Moves[_direction].DX;
-                    _y += Moves[_direction].DY;
+                    var (dx, dy) = Moves[_direction];
+                    // The grid wraps, so both axes are taken modulo the grid size (plus it, to keep
+                    // the remainder positive when moving west or south).
+                    _x = ((_x + dx) % GridSize + GridSize) % GridSize;
+                    _y = ((_y + dy) % GridSize + GridSize) % GridSize;
                     break;
             }
         }
