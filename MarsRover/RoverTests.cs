@@ -46,4 +46,20 @@ public class RoverTests
 
         rover.Execute("RMMMMMMMMMM").ShouldBe("0:0:E");
     }
+
+    [Fact]
+    public void Execute_WhenTheNextMoveWouldEnterAnObstacle_StopsOnTheLastFreeSquare()
+    {
+        var rover = new Rover((0, 3));
+
+        rover.Execute("MMMM").ShouldBe("O:0:2:N");
+    }
+
+    [Fact]
+    public void Execute_WhenAnObstacleBlocksACommand_IgnoresTheRemainingCommands()
+    {
+        var rover = new Rover((0, 1));
+
+        rover.Execute("MRRR").ShouldBe("O:0:0:N");
+    }
 }
