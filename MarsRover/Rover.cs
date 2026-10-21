@@ -37,19 +37,13 @@ public class Rover
 
         foreach (var command in commands)
         {
-            switch (command)
-            {
-                case 'L':
-                    _direction = (_direction + 3) % 4;
-                    break;
-                case 'R':
-                    _direction = (_direction + 1) % 4;
-                    break;
-                case 'M':
-                    if (!TryMoveForward())
-                        return $"O:{_x}:{_y}:{DirectionNames[_direction]}";
-                    break;
-            }
+            // Any command left over by the checks above is 'M', so it moves the rover forward.
+            if (command == 'L')
+                _direction = (_direction + 3) % 4;
+            else if (command == 'R')
+                _direction = (_direction + 1) % 4;
+            else if (!TryMoveForward())
+                return $"O:{_x}:{_y}:{DirectionNames[_direction]}";
         }
 
         return $"{_x}:{_y}:{DirectionNames[_direction]}";
