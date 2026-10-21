@@ -64,6 +64,15 @@ public class RoverTests
     }
 
     [Fact]
+    public void Execute_WhenCreatedWithSeveralObstacles_StopsAtTheFirstOneInTheWay()
+    {
+        // Rule 5 is a set of obstacles: only one on the rover's next square stops it.
+        var rover = new Rover((0, 2), (0, 4));
+
+        rover.Execute("MMMM").ShouldBe("O:0:1:N");
+    }
+
+    [Fact]
     public void Execute_WhenGivenNull_ThrowsArgumentNullException()
     {
         var rover = new Rover();
