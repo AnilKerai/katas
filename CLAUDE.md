@@ -11,6 +11,7 @@ Each kata is its own project directory at the repo root, referenced from `Katas.
 - `BowlingScoreCalculator/`
 - `FizzBuzz/`
 - `MagicSquare/`
+- `MarsRover/`
 - `PrintDiamond/`
 - `Reordering/`
 - `RomanNumerals/`
