@@ -30,6 +30,11 @@ public class Rover
     /// </summary>
     public string Execute(string commands)
     {
+        if (commands is null)
+            throw new ArgumentNullException(nameof(commands));
+
+        EnsureCommandsAreValid(commands);
+
         foreach (var command in commands)
         {
             switch (command)
@@ -65,5 +70,18 @@ public class Rover
         _x = x;
         _y = y;
         return true;
+    }
+
+    // Unknown characters are rejected before the rover moves, so a command string either runs in
+    // full or not at all.
+    private static void EnsureCommandsAreValid(string commands)
+    {
+        foreach (var command in commands)
+        {
+            if (command is not ('L' or 'R' or 'M'))
+                throw new ArgumentException(
+                    $"'{command}' is not a valid command; expected 'L', 'R' or 'M'.",
+                    nameof(commands));
+        }
     }
 }
