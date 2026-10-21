@@ -62,4 +62,36 @@ public class RoverTests
 
         rover.Execute("MRRR").ShouldBe("O:0:0:N");
     }
+
+    [Fact]
+    public void Execute_WhenGivenNull_ThrowsArgumentNullException()
+    {
+        var rover = new Rover();
+
+        Should.Throw<ArgumentNullException>(() => rover.Execute(null!));
+    }
+
+    [Theory]
+    [InlineData("X")]
+    [InlineData("l")]
+    [InlineData("#")]
+    public void Execute_WhenGivenAnUnknownCommand_ThrowsArgumentExceptionNamingIt(string commands)
+    {
+        var rover = new Rover();
+
+        var exception = Should.Throw<ArgumentException>(() => rover.Execute(commands));
+
+        exception.Message.ShouldContain($"'{commands[0]}'");
+    }
+
+    [Fact]
+    public void Execute_WhenGivenAnUnknownCommand_DoesNotMoveAtAll()
+    {
+        var rover = new Rover();
+
+        Should.Throw<ArgumentException>(() => rover.Execute("MX"));
+
+        // The leading M never ran: the commands are validated before any movement.
+        rover.Execute("").ShouldBe("0:0:N");
+    }
 }
