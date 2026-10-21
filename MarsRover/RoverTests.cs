@@ -27,6 +27,9 @@ public class RoverTests
 
     [Theory]
     [InlineData("MMRMMLM", "2:3:N")]
+    [InlineData("MMMMMMMMMM", "0:0:N")]
+    [InlineData("LM", "9:0:W")]
+    [InlineData("RRM", "0:9:S")]
     [InlineData("", "0:0:N")]
     public void Execute_WhenGivenTheKataExamplesWithoutObstacles_ReturnsTheExpectedPosition(
         string commands, string expected)
@@ -34,5 +37,13 @@ public class RoverTests
         var rover = new Rover();
 
         rover.Execute(commands).ShouldBe(expected);
+    }
+
+    [Fact]
+    public void Execute_WhenMovingEastAcrossTheEdge_WrapsToTheWestSide()
+    {
+        var rover = new Rover();
+
+        rover.Execute("RMMMMMMMMMM").ShouldBe("0:0:E");
     }
 }
