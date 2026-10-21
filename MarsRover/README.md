@@ -14,7 +14,7 @@ The API is one method on `Rover`:
 - `Execute(string commands)` runs the commands in order and returns the final position as `x:y:D`,
   where `D` is one of `N`, `E`, `S`, `W`
 
-## Commands
+## Rover commands
 
 | Command | Meaning                                        |
 |---------|------------------------------------------------|
