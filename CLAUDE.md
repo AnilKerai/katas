@@ -34,6 +34,9 @@ hands a first argument that starts with a dash and isn't an integer to the xunit
 `dotnet test` runs the tests, since it starts the app with the runner's options (for example `--server`). Any
 other first argument is a FizzBuzz argument, so `-5` still prints the usage message. `ProgramTests` calls the
 entry point in-process (`Assembly.EntryPoint`) with the console redirected, which is how `Program.cs` is covered.
+`Program.cs` builds the xunit console runner with `new ConsoleRunner(args, typeof(FizzBuzzer).Assembly)`, not
+`ConsoleRunner.Run(args)`: `Run` takes the entry assembly as the test assembly, which is Rider's test host when Rider
+runs the tests, and it queues a delayed `Environment.Exit` that would kill that host.
 
 ## Languages & test frameworks
 
